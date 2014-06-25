@@ -1,8 +1,11 @@
 # core module
-require 'path'
+require 'fs'
 
 # valid dependency
 require 'lodash'
 
 # missing dependency
-require 'express'
+require 'ms'
+
+# local module
+require './lib'

@@ -1,6 +1,6 @@
 # require-lint
 
-`require-lint` parses your code for `require` statements, and checks that:
+Parses your code for `require` statements, and checks that:
 
 - all required dependencies are mentioned in `package.json`
 - all depedencies in `package.json` are still being used
@@ -14,9 +14,9 @@ $ require-lint
 [ERROR] Missing dependencies: attempt, express
 ```
 
-Missing dependencies trigger an exit code of `1`, but extraneous dependencies don't fail the build.
+Extraneous dependencies only print a warning, but missing dependencies trigger an exit code of `1`.
 
-*Note: require-lint cannot check dev dependencies, since test code doesn't typically have a single entry point*
+*Note: require-lint doesn't check dev dependencies, since test code doesn't typically have a single entry point*
 
 ## Defaut behaviour
 
@@ -26,7 +26,7 @@ By default, it looks for a `package.json` in the current folder.
 $ require-lint
 ```
 
-It then parses your source, from the default entry points declared as `main` and `bin`:
+It then parses your source from the entry points declared as `main` and `bin`:
 
 ```json
 {
@@ -53,18 +53,26 @@ $ require-lint --pkg ~/dev/thing/package.json
 - `--src`
 
 The path to additional entry points.
+These must be relative to the given `package.json`.
 
 ```
-$ require-lint --src ~/dev/foo.js --src ~/dev/bar.js
+$ require-lint --src lib/server.js --src lib/worker.js
 ```
 
 - `--require`
 
-Any file to be required before processing.
-This is useful to load extra compilers like [Coffee-Script](http://coffeescript.org/).
+Any file to be required before processing, for example to load extra compilers like [Coffee-Script](http://coffeescript.org/).
+These must be absolute paths or available modules.
 
 ```
 $ require-lint --require coffee-script/register
+```
+
+## Dev notes
+
+```
+$ npm install
+$ npm test
 ```
 
 ## Other projects
