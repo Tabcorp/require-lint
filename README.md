@@ -10,11 +10,13 @@
 ```
 $ require-lint
 
+[WARN] Extraneous dependencies: lodash
 [ERROR] Missing dependencies: attempt, express
-[WARN]  Extraneous dependencies: lodash
 ```
 
 Missing dependencies trigger an exit code of `1`, but extraneous dependencies don't fail the build.
+
+*Note: require-lint cannot check dev dependencies, since test code doesn't typically have a single entry point*
 
 ## Defaut behaviour
 
@@ -24,11 +26,15 @@ By default, it looks for a `package.json` in the current folder.
 $ require-lint
 ```
 
-It then parses your source from the entry point declared as `main`:
+It then parses your source, from the default entry points declared as `main` and `bin`:
 
 ```json
 {
-    "main": "./lib/index.js"
+  "main": "./lib/index.js",
+  "bin": {
+    "foo": "./bin/foo.js",
+    "bar": "./bin/bar.js"
+  }
 }
 ```
 
@@ -41,16 +47,15 @@ You can also specify the following options
 The path to your `package.json`.
 
 ```
-require-lint --pkg ~/dev/thing/package.json
+$ require-lint --pkg ~/dev/thing/package.json
 ```
 
-- `--entry`
+- `--src`
 
-The path to the entry point, in addition to `main`.
-You can specify several of these.
+The path to additional entry points.
 
 ```
-require-lint --entry ~/dev/foo.js --entry ~/dev/bar.js
+$ require-lint --src ~/dev/foo.js --src ~/dev/bar.js
 ```
 
 - `--require`
@@ -59,7 +64,7 @@ Any file to be required before processing.
 This is useful to load extra compilers like [Coffee-Script](http://coffeescript.org/).
 
 ```
-require-lint --require coffee-script/register
+$ require-lint --require coffee-script/register
 ```
 
 ## Other projects

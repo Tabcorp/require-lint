@@ -15,9 +15,6 @@
   "bin": {
     "require-lint": "./bin/cmd.js"
   },
-  "script": {
-    "test": "make test -i"
-  },
   "dependencies": {
     "lodash": "^2.4.1",
     "detective": "^3.1.0",

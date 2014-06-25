@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+var _        = require('lodash');
 var util     = require('util');
 var path     = require('path');
 var minimist = require('minimist');
@@ -13,17 +14,21 @@ function list(arg) {
 
 var args     = minimist(process.argv.slice(2));
 var pkg      = require(path.resolve(args.pkg || 'package.json'));
-var entries  = list(args.entry);
+var sources  = list(args.src);
 var requires = list(args.require);
 
 if (pkg.main) {
-  entries.push(pkg.main);
+  sources.push(pkg.main);
+}
+
+if (pkg.bin) {
+  sources = sources.concat(_.values(pkg.bin));
 }
 
 var report = index.lint({
   pkg: pkg,
   requires: requires,
-  entries: entries
+  sources: sources
 });
 
 if (report.extra.length > 0) {
