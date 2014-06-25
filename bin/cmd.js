@@ -5,22 +5,16 @@ var path     = require('path');
 var minimist = require('minimist');
 var index    = require('../lib/index');
 
-function files(arg) {
+function list(arg) {
   if (util.isArray(arg)) return arg;
   else if (typeof arg === 'string') return [arg];
   else return [];
 }
 
-function print(message, list) {
-  if (list.length > 0) {
-    console.warn(message, list.join(', '));
-  }
-}
-
 var args     = minimist(process.argv.slice(2));
-var pkg      = require(path.resolve(args.pkg));
-var entries  = files(args.entry);
-var requires = files(args.require);
+var pkg      = require(path.resolve(args.pkg || 'package.json'));
+var entries  = list(args.entry);
+var requires = list(args.require);
 
 if (pkg.main) {
   entries.push(pkg.main);
@@ -32,9 +26,11 @@ var report = index.lint({
   entries: entries
 });
 
-print('Missing dependencies:', report.missing);
-print('Extraneous dependencies:', report.extra);
+if (report.extra.length > 0) {
+  console.warn('[WARN] Extraneous dependencies:', report.extra.join(', '));
+}
 
 if (report.missing.length > 0) {
+  console.error('[ERROR] Missing dependencies:', report.missing.join(', '));
   process.exit(1);
 }
