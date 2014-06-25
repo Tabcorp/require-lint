@@ -1,0 +1,30 @@
+{
+  "name": "require-lint",
+  "version": "0.0.1",
+  "description": "Verify that require statements match your package.json",
+  "author": "Tabcorp",
+  "license": "MIT",
+  "keywords": [
+    "require",
+    "package",
+    "dependencies",
+    "lint",
+    "check"
+  ],
+  "main": "lib/index.js",
+  "bin": {
+    "require-lint": "./bin/cmd.js"
+  },
+  "script": {
+    "test": "make test -i"
+  },
+  "dependencies": {
+    "lodash": "^2.4.1",
+    "detective": "^3.1.0",
+    "builtins": "^0.0.4",
+    "minimist": "^0.2.0"
+  },
+  "devDependencies": {
+    "coffee-script": "~1.7.1"
+  }
+}

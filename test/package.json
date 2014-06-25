@@ -1,0 +1,11 @@
+{
+  "name": "test-package",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Test package.json",
+  "author": "Tabcorp",
+  "dependencies": {
+    "lodash": "^2.4.1",
+    "not-used": "0.0.1"
+  }
+}
