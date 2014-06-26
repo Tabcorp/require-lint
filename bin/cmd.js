@@ -14,7 +14,7 @@ function list(arg) {
 var args = minimist(process.argv.slice(2));
 
 var report = index.lint({
-  pkg: path.resolve(args.pkg || 'package.json',
+  pkg: path.resolve(args.pkg || 'package.json'),
   requires: list(args.require),
   sources: list(args.src)
 });
