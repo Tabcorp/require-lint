@@ -3,7 +3,8 @@ var index  = require('../lib/index');
 
 describe('require lint', function() {
 
-  this.slow(100);
+  this.slow(500);
+  this.timeout(500);
 
   describe('entry points', function() {
 
@@ -48,6 +49,16 @@ describe('require lint', function() {
       });
       report.should.eql({
         missing: ['lodash', 'express'],
+        extra: []
+      });
+    });
+
+    it('should handle deep requires like <restify/lib/router>', function() {
+      var report = index.lint({
+        pkg: __dirname + '/deep/package.json'
+      });
+      report.should.eql({
+        missing: [],
         extra: []
       });
     });
