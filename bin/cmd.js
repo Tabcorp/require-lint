@@ -13,17 +13,25 @@ function list(arg) {
 
 var args = minimist(process.argv.slice(2));
 
-var report = index.lint({
-  pkg: path.resolve(args.pkg || 'package.json'),
-  requires: list(args.require),
-  sources: list(args.src)
-});
+try {
 
-if (report.extra.length > 0) {
-  console.warn('[WARN] Extraneous dependencies:', report.extra.join(', '));
-}
+  var report = index.lint({
+    pkg: path.resolve(args.pkg || 'package.json'),
+    requires: list(args.require),
+    sources: list(args.src)
+  });
 
-if (report.missing.length > 0) {
-  console.error('[ERROR] Missing dependencies:', report.missing.join(', '));
+  if (report.extra.length > 0) {
+    console.warn('[WARN] Extraneous dependencies:', report.extra.join(', '));
+  }
+
+  if (report.missing.length > 0) {
+    console.error('[ERROR] Missing dependencies:', report.missing.join(', '));
+    throw new Error('Failed');
+  }
+
+} catch (ex) {
+  console.error(ex.message);
   process.exit(1);
 }
+
