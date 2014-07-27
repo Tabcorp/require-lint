@@ -1,13 +1,20 @@
 # require-lint
 
+
+[![NPM](http://img.shields.io/npm/v/require-lint.svg?style=flat)](https://npmjs.org/package/require-lint)
+[![License](http://img.shields.io/npm/l/require-lint.svg?style=flat)](https://github.com/TabDigital/require-lint)
+
+[![Build Status](http://img.shields.io/travis/TabDigital/require-lint.svg?style=flat)](http://travis-ci.org/TabDigital/require-lint)
+[![Dependencies](http://img.shields.io/david/TabDigital/require-lint.svg?style=flat)](https://david-dm.org/TabDigital/require-lint)
+[![Dev dependencies](http://img.shields.io/david/dev/TabDigital/require-lint.svg?style=flat)](https://david-dm.org/TabDigital/require-lint)
+
 Parses your code for `require` statements, and checks that:
 
 - all required dependencies are mentioned in `package.json`
 - all depedencies in `package.json` are still being used
 
-![npm install](https://nodei.co/npm/require-lint.png?mini=true)
-
 ```
+$ npm install -g require-lint
 $ require-lint
 
 [WARN] Extraneous dependencies: lodash
