@@ -11,6 +11,13 @@
     "lint",
     "check"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TabDigital/require-lint.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TabDigital/require-lint/issues"
+  },
   "main": "lib/index.js",
   "bin": {
     "require-lint": "./bin/cmd.js"
