@@ -54,6 +54,17 @@ describe('require lint', function() {
       });
     });
 
+    it('can ignore specific required dependencies', function(done) {
+      test([
+        '--pkg ' + __dirname + '/recursive/package.json',
+        '--ignore-missing lodash'
+      ], function(exitCode, stdout, stderr) {
+        exitCode.should.be.above(0);
+        stderr.should.contain('Missing dependencies: express');
+        done();
+      });
+    });
+
     it('should handle module with special names', function(done) {
       test([
         '--pkg ' + __dirname + '/special/package.json'
@@ -71,6 +82,17 @@ describe('require lint', function() {
       ], function(exitCode, stdout, stderr) {
         exitCode.should.eql(0);
         stderr.should.contain('Extraneous dependencies: express');
+        done();
+      });
+    });
+
+    it('can ignore specified extraneous dependencies', function(done) {
+      test([
+        '--pkg ' + __dirname + '/extra/package.json',
+        '--ignore-extra express'
+      ], function(exitCode, stdout, stderr) {
+        exitCode.should.eql(0);
+        stderr.should.not.contain('express');
         done();
       });
     });

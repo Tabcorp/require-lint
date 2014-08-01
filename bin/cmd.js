@@ -18,7 +18,9 @@ try {
   var report = index.lint({
     pkg: path.resolve(args.pkg || 'package.json'),
     requires: list(args.require),
-    sources: list(args.src)
+    sources: list(args.src),
+    ignoreMissing: list(args['ignore-missing']),
+    ignoreExtra: list(args['ignore-extra'])
   });
 
   if (report.extra.length > 0) {
@@ -34,4 +36,3 @@ try {
   console.error(ex.message);
   process.exit(1);
 }
-

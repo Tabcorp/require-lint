@@ -75,6 +75,22 @@ These must be absolute paths or available modules.
 $ require-lint --require coffee-script/register
 ```
 
+- `--ignore-missing`
+
+Modules that should not be considered missing, even if they are not declared in `package.json`. This is not recommended!
+
+```
+$ require-lint --ignore-missing newrelic
+```
+
+- `--ignore-extra`
+
+Modules that should not be considered extraneous, even if they are not `required`. For example you might have a dependency on `coffee-script`, but not explicitely `require` it.
+
+```
+$ require-lint --ignore-extra coffee-script
+```
+
 ## Dev notes
 
 ```
