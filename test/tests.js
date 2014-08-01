@@ -1,5 +1,6 @@
+var path   = require('path');
 var should = require('should');
-var index  = require('../lib/index');
+var exec   = require('child_process').exec;
 
 describe('require lint', function() {
 
@@ -8,34 +9,34 @@ describe('require lint', function() {
 
   describe('entry points', function() {
 
-    it('should follow the <main> entry point', function() {
-      var report = index.lint({
-        pkg: __dirname + '/main/package.json'
-      });
-      report.should.eql({
-        missing: ['lodash'],
-        extra: []
-      });
-    });
-
-    it('should follow <bin> entry points', function() {
-      var report = index.lint({
-        pkg: __dirname + '/bin/package.json'
-      });
-      report.should.eql({
-        missing: ['lodash', 'express'],
-        extra: []
+    it('should follow the <main> entry point', function(done) {
+      test([
+        '--pkg ' + __dirname + '/main/package.json'
+      ], function(exitCode, stdout, stderr) {
+        exitCode.should.be.above(0);
+        stderr.should.contain('Missing dependencies: lodash');
+        done();
       });
     });
 
-    it('can specify manual entry points', function() {
-      var report = index.lint({
-        pkg: __dirname + '/sources/package.json',
-        sources: ['lib.js']
+    it('should follow <bin> entry points', function(done) {
+      test([
+        '--pkg ' + __dirname + '/bin/package.json'
+      ], function(exitCode, stdout, stderr) {
+        exitCode.should.be.above(0);
+        stderr.should.contain('Missing dependencies: lodash, express');
+        done();
       });
-      report.should.eql({
-        missing: ['lodash'],
-        extra: []
+    });
+
+    it('can specify manual entry points', function(done) {
+      test([
+        '--pkg ' + __dirname + '/sources/package.json',
+        '--src lib.js',
+      ], function(exitCode, stdout, stderr) {
+        exitCode.should.be.above(0);
+        stderr.should.contain('Missing dependencies: lodash');
+        done();
       });
     });
 
@@ -43,33 +44,34 @@ describe('require lint', function() {
 
   describe('dependencies', function() {
 
-    it('should find dependencies recursively', function() {
-      var report = index.lint({
-        pkg: __dirname + '/recursive/package.json'
-      });
-      report.should.eql({
-        missing: ['lodash', 'express', 'big.js'],
-        extra: []
-      });
-    });
-
-    it('should handle deep requires like <restify/lib/router>', function() {
-      var report = index.lint({
-        pkg: __dirname + '/deep/package.json'
-      });
-      report.should.eql({
-        missing: [],
-        extra: []
+    it('should find dependencies recursively', function(done) {
+      test([
+        '--pkg ' + __dirname + '/recursive/package.json'
+      ], function(exitCode, stdout, stderr) {
+        exitCode.should.be.above(0);
+        stderr.should.contain('Missing dependencies: lodash, express');
+        done();
       });
     });
 
-    it('should find extraneous dependencies', function() {
-      var report = index.lint({
-        pkg: __dirname + '/extra/package.json'
+    it('should handle module with special names', function(done) {
+      test([
+        '--pkg ' + __dirname + '/special/package.json'
+      ], function(exitCode, stdout, stderr) {
+        exitCode.should.eql(0);
+        stderr.should.not.include('restify');
+        stderr.should.not.include('big.js');
+        done();
       });
-      report.should.eql({
-        missing: [],
-        extra: ['express']
+    });
+
+    it('should find extraneous dependencies', function(done) {
+      test([
+        '--pkg ' + __dirname + '/extra/package.json'
+      ], function(exitCode, stdout, stderr) {
+        exitCode.should.eql(0);
+        stderr.should.contain('Extraneous dependencies: express');
+        done();
       });
     });
 
@@ -78,16 +80,23 @@ describe('require lint', function() {
   describe('extra requires', function() {
 
     it('can process coffee-script source', function() {
-      var report = index.lint({
-        pkg: __dirname + '/coffee/package.json',
-        requires: ['coffee-script/register']
-      });
-      report.should.eql({
-        missing: ['ms', 'express'],
-        extra: []
+      test([
+        '--pkg ' + __dirname + '/coffee/package.json',
+        '--require coffee-script/register'
+      ], function(exitCode, stdout, stderr) {
+        exitCode.should.be.above(0);
+        stderr.should.contain('Missing dependencies: ms, express');
+        done();
       });
     });
 
   });
+
+  function test(flags, callback) {
+    var binary = path.resolve('./bin/cmd.js')
+    exec(binary + ' ' + flags.join(' '),  function (error, stdout, stderr) {
+      callback(error ? error.code : 0, stdout, stderr);
+    });
+  }
 
 });

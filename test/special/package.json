@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "main": "index.js",
   "dependencies": {
-    "restify": "*"
+    "restify": "*",
+    "big.js": "*"
   }
 }
