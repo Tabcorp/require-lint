@@ -48,7 +48,7 @@ describe('require lint', function() {
         pkg: __dirname + '/recursive/package.json'
       });
       report.should.eql({
-        missing: ['lodash', 'express'],
+        missing: ['lodash', 'express', 'big.js'],
         extra: []
       });
     });
