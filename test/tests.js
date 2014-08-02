@@ -80,7 +80,7 @@ describe('require lint', function() {
       test([
         '--pkg ' + __dirname + '/extra/package.json'
       ], function(exitCode, stdout, stderr) {
-        exitCode.should.eql(0);
+        exitCode.should.be.above(0);
         stderr.should.contain('Extraneous dependencies: express');
         done();
       });

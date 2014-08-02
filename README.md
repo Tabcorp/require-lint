@@ -11,17 +11,17 @@
 Parses your code for `require` statements, and checks that:
 
 - all required dependencies are mentioned in `package.json`
-- all depedencies in `package.json` are still being used
+- all dependencies in `package.json` are still being used
 
 ```
 $ npm install -g require-lint
 $ require-lint
 
-[WARN] Extraneous dependencies: lodash
-[ERROR] Missing dependencies: attempt, express
+[require-lint] Missing dependencies: attempt, express
+[require-lint] Extraneous dependencies: lodash
 ```
 
-Extraneous dependencies only print a warning, but missing dependencies trigger an exit code of `1`.
+Any failed checks will trigger an exit code of `1`, and you can choose to fail your build chain.
 
 *Note: require-lint doesn't check dev dependencies, since test code doesn't typically have a single entry point*
 

@@ -23,13 +23,18 @@ try {
     ignoreExtra: list(args['ignore-extra'])
   });
 
-  if (report.extra.length > 0) {
-    console.warn('[WARN] Extraneous dependencies:', report.extra.join(', '));
+  if (report.missing.length > 0) {
+    console.error('[require-lint] Missing dependencies:', report.missing.join(', '));
   }
 
-  if (report.missing.length > 0) {
-    console.error('[ERROR] Missing dependencies:', report.missing.join(', '));
-    throw new Error('Failed');
+  if (report.extra.length > 0) {
+    console.error('[require-lint] Extraneous dependencies:', report.extra.join(', '));
+  }
+
+  if (report.missing.length + report.extra.length > 0) {
+    process.exit(1);
+  } else {
+    console.log('[require-lint] OK')
   }
 
 } catch (ex) {
