@@ -14,7 +14,7 @@ describe('require lint', function() {
         '--pkg ' + __dirname + '/main/package.json'
       ], function(exitCode, stdout, stderr) {
         exitCode.should.be.above(0);
-        stderr.should.contain('Missing dependencies: lodash');
+        stderr.should.containEql('Missing dependencies: lodash');
         done();
       });
     });
@@ -24,7 +24,7 @@ describe('require lint', function() {
         '--pkg ' + __dirname + '/bin/package.json'
       ], function(exitCode, stdout, stderr) {
         exitCode.should.be.above(0);
-        stderr.should.contain('Missing dependencies: lodash, express');
+        stderr.should.containEql('Missing dependencies: lodash, express');
         done();
       });
     });
@@ -35,7 +35,7 @@ describe('require lint', function() {
         '--src lib.js',
       ], function(exitCode, stdout, stderr) {
         exitCode.should.be.above(0);
-        stderr.should.contain('Missing dependencies: lodash');
+        stderr.should.containEql('Missing dependencies: lodash');
         done();
       });
     });
@@ -49,7 +49,7 @@ describe('require lint', function() {
         '--pkg ' + __dirname + '/recursive/package.json'
       ], function(exitCode, stdout, stderr) {
         exitCode.should.be.above(0);
-        stderr.should.contain('Missing dependencies: lodash, express');
+        stderr.should.containEql('Missing dependencies: lodash, express');
         done();
       });
     });
@@ -60,7 +60,7 @@ describe('require lint', function() {
         '--ignore-missing lodash'
       ], function(exitCode, stdout, stderr) {
         exitCode.should.be.above(0);
-        stderr.should.contain('Missing dependencies: express');
+        stderr.should.containEql('Missing dependencies: express');
         done();
       });
     });
@@ -70,8 +70,8 @@ describe('require lint', function() {
         '--pkg ' + __dirname + '/special/package.json'
       ], function(exitCode, stdout, stderr) {
         exitCode.should.eql(0);
-        stderr.should.not.include('restify');
-        stderr.should.not.include('big.js');
+        stderr.should.not.containEql('restify');
+        stderr.should.not.containEql('big.js');
         done();
       });
     });
@@ -81,7 +81,7 @@ describe('require lint', function() {
         '--pkg ' + __dirname + '/extra/package.json'
       ], function(exitCode, stdout, stderr) {
         exitCode.should.be.above(0);
-        stderr.should.contain('Extraneous dependencies: express');
+        stderr.should.containEql('Extraneous dependencies: express');
         done();
       });
     });
@@ -92,7 +92,7 @@ describe('require lint', function() {
         '--ignore-extra express'
       ], function(exitCode, stdout, stderr) {
         exitCode.should.eql(0);
-        stderr.should.not.contain('express');
+        stderr.should.not.containEql('express');
         done();
       });
     });
@@ -107,7 +107,7 @@ describe('require lint', function() {
         '--require coffee-script/register'
       ], function(exitCode, stdout, stderr) {
         exitCode.should.be.above(0);
-        stderr.should.contain('Missing dependencies: ms, express');
+        stderr.should.containEql('Missing dependencies: ms, express');
         done();
       });
     });

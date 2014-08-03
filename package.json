@@ -34,6 +34,6 @@
   "devDependencies": {
     "coffee-script": "~1.7.1",
     "mocha": "~1.19.0",
-    "should": "~2.1.0"
+    "should": "~4.0.4"
   }
 }
