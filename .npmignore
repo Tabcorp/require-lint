@@ -1,4 +1,5 @@
 .gitignore
 .npmignore
+.travis.yml
 Makefile
 test
