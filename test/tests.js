@@ -122,8 +122,7 @@ describe('require lint', function() {
         '--src ' + 'index.js'
       ], function (exitCode, stdout, stderr) {
         exitCode.should.be.above(0);
-        stderr.should.containEql('bad-syntax/index.js');
-        stderr.should.containEql('Line 4');
+        stderr.should.containEql('bad-syntax/index.js:4');
         stderr.should.containEql('Unexpected token )');
         done();
       });
@@ -136,8 +135,7 @@ describe('require lint', function() {
         '--src ' + 'index.coffee'
       ], function (exitCode, stdout, stderr) {
         exitCode.should.be.above(0);
-        stderr.should.containEql('bad-syntax/index.coffee');
-        stderr.should.containEql('Line 3');
+        stderr.should.containEql('bad-syntax/index.coffee:3');
         stderr.should.containEql('unmatched )');
         done();
       });
