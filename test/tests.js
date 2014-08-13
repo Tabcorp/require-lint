@@ -101,7 +101,7 @@ describe('require lint', function() {
 
   describe('extra requires', function() {
 
-    it('can process coffee-script source', function() {
+    it('can process coffee-script source', function(done) {
       test([
         '--pkg ' + __dirname + '/coffee/package.json',
         '--require coffee-script/register'
@@ -112,6 +112,22 @@ describe('require lint', function() {
       });
     });
 
+  });
+
+  describe('syntax error reporting', function(){
+    it('can print print syntax error location', function (done) {
+      test([ 
+        '--pkg ' + __dirname + '/bad-syntax/package.json',
+        '--require coffee-script/register',
+        '--src ' + 'index.coffee'
+      ], function (exitCode, stdout, stderr) {
+        exitCode.should.be.above(0);
+        stderr.should.containEql('bad-syntax/index.coffee: 0');
+        stderr.should.containEql('unmatched )');
+
+        done()
+      });
+    });
   });
 
   function test(flags, callback) {

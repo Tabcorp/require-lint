@@ -38,6 +38,11 @@ try {
   }
 
 } catch (ex) {
+
+  if(ex instanceof SyntaxError){
+    console.error(ex.filename + ': ' + ex.location.first_line);
+  }
+
   console.error(ex.message);
   process.exit(1);
 }
