@@ -115,19 +115,34 @@ describe('require lint', function() {
   });
 
   describe('syntax error reporting', function(){
-    it('can print print syntax error location', function (done) {
-      test([ 
+
+    it('can print JavaScript syntax error locations', function (done) {
+      test([
+        '--pkg ' + __dirname + '/bad-syntax/package.json',
+        '--src ' + 'index.js'
+      ], function (exitCode, stdout, stderr) {
+        exitCode.should.be.above(0);
+        stderr.should.containEql('bad-syntax/index.js');
+        stderr.should.containEql('Line 4');
+        stderr.should.containEql('Unexpected token )');
+        done();
+      });
+    });
+
+    it('can print CoffeeScript syntax error locations', function (done) {
+      test([
         '--pkg ' + __dirname + '/bad-syntax/package.json',
         '--require coffee-script/register',
         '--src ' + 'index.coffee'
       ], function (exitCode, stdout, stderr) {
         exitCode.should.be.above(0);
-        stderr.should.containEql('bad-syntax/index.coffee: 0');
+        stderr.should.containEql('bad-syntax/index.coffee');
+        stderr.should.containEql('Line 3');
         stderr.should.containEql('unmatched )');
-
-        done()
+        done();
       });
     });
+
   });
 
   function test(flags, callback) {
