@@ -25,7 +25,7 @@ Any failed checks will trigger an exit code of `1`, and you can choose to fail y
 
 *Note: require-lint doesn't check dev dependencies, since test code doesn't typically have a single entry point*
 
-## Defaut behaviour
+## Default behaviour
 
 By default, it looks for a `package.json` in the current folder.
 
