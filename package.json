@@ -29,7 +29,8 @@
     "lodash": "^2.4.1",
     "detective": "^3.1.0",
     "builtins": "^0.0.7",
-    "minimist": "^0.2.0"
+    "minimist": "^0.2.0",
+    "glob": "^5.0.9"
   },
   "devDependencies": {
     "coffee-script": "~1.7.1",

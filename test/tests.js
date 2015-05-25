@@ -40,6 +40,17 @@ describe('require lint', function() {
       });
     });
 
+    it('can specify manual entry points with globs', function(done) {
+      test([
+        '--pkg ' + __dirname + '/globs/package.json',
+        '--src **/file-at-level*.js' ,
+      ], function(exitCode, stdout, stderr) {
+        exitCode.should.be.above(0);
+        stderr.should.containEql('Missing dependencies: restify, lodash');
+        done();
+      });
+    });
+
   });
 
   describe('dependencies', function() {
