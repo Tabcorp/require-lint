@@ -61,6 +61,7 @@ $ require-lint --pkg ~/dev/thing/package.json
 
 The path to additional entry points.
 These must be relative to the given `package.json`.
+Globs can be used as paths.
 
 ```
 $ require-lint --src lib/server.js --src lib/worker.js
