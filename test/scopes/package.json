@@ -1,0 +1,10 @@
+{
+  "name": "test-package",
+  "version": "0.0.0",
+  "main": "lib.js",
+  "dependencies": {
+    "regular": "1.0.0",
+    "@scope/present": "1.0.0",
+    "@scope/extra": "1.0.0"
+  }
+}
