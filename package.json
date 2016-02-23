@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "builtins": "^1.0.3",
-    "detective": "^3.1.0",
+    "detective": "^4.3.1",
     "glob": "^7.0.0",
     "lodash": "^4.5.1",
     "minimist": "^1.2.0"
