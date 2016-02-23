@@ -154,6 +154,21 @@ describe('require lint', function() {
 
   });
 
+  describe('scoped modules', function() {
+
+    it('can process module names with a @scope', function(done) {
+      test([
+        '--pkg ' + __dirname + '/scopes/package.json',
+      ], function(exitCode, stdout, stderr) {
+        exitCode.should.be.above(0);
+        stderr.should.containEql('Missing dependencies: @scope/missing');
+        stderr.should.containEql('Extraneous dependencies: @scope/extra');
+        done();
+      });
+    });
+
+  });
+
   function test(flags, callback) {
     var binary = path.resolve('./bin/cmd.js')
     exec(binary + ' ' + flags.join(' '),  function (error, stdout, stderr) {
