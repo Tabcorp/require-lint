@@ -134,7 +134,7 @@ describe('require lint', function() {
       ], function (exitCode, stdout, stderr) {
         exitCode.should.be.above(0);
         stderr.should.containEql('bad-syntax/index.js:4');
-        stderr.should.containEql('Unexpected token )');
+        stderr.should.containEql('Unexpected token (4:1)');
         done();
       });
     });
