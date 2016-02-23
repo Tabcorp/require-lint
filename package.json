@@ -26,15 +26,15 @@
     "test": "mocha"
   },
   "dependencies": {
-    "lodash": "^2.4.1",
+    "builtins": "^1.0.3",
     "detective": "^3.1.0",
-    "builtins": "^0.0.7",
-    "minimist": "^0.2.0",
-    "glob": "^5.0.9"
+    "glob": "^7.0.0",
+    "lodash": "^4.5.1",
+    "minimist": "^1.2.0"
   },
   "devDependencies": {
     "coffee-script": "~1.7.1",
-    "mocha": "~1.21.3",
-    "should": "~4.0.4"
+    "mocha": "^2.4.5",
+    "should": "^8.2.2"
   }
 }
