@@ -76,6 +76,16 @@ describe('require lint', function() {
       });
     });
 
+    it('should not duplicate module name in error message', function(done) {
+      test([
+        '--pkg ' + __dirname + '/duplicate/package.json',
+      ], function(exitCode, stdout, stderr) {
+        exitCode.should.be.above(0);
+        stderr.should.not.containEql('Missing dependencies: express, express');
+        done();
+      });
+    });
+
     it('should handle module with special names', function(done) {
       test([
         '--pkg ' + __dirname + '/special/package.json'
