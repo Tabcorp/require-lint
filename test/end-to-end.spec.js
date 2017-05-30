@@ -179,9 +179,29 @@ describe('require lint', function() {
 
   });
 
-  function test(flags, callback) {
+  describe('config file', function() {
+
+    it('can load config from a .requirelintrc file at the root', function(done) {
+      test(__dirname + '/rc', [], function(exitCode, stdout, stderr) {
+        console.log(stdout, stderr)
+        exitCode.should.eql(0);
+        stderr.should.eql('');
+        stderr.should.eql('');
+        done();
+      });
+    });
+
+  });
+
+  function test(cwd, flags, callback) {
+    if (!callback) {
+      callback = flags
+      flags = cwd
+      cwd = null
+    }
     var binary = path.resolve('./bin/cmd.js')
-    exec(binary + ' ' + flags.join(' '),  function (error, stdout, stderr) {
+    var options = cwd ? {cwd:cwd} : {}
+    exec(binary + ' ' + flags.join(' '),  options, function (error, stdout, stderr) {
       callback(error ? error.code : 0, stdout, stderr);
     });
   }
