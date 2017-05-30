@@ -2,7 +2,7 @@
 
 var util     = require('util');
 var path     = require('path');
-var minimist = require('minimist');
+var rc       = require('rc');
 var index    = require('../lib/index');
 
 function list(arg) {
@@ -11,7 +11,7 @@ function list(arg) {
   else return [];
 }
 
-var args = minimist(process.argv.slice(2));
+var args = rc('requirelint');
 
 try {
 
