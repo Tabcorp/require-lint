@@ -92,6 +92,27 @@ Modules that should not be considered extraneous, even if they are not `required
 $ require-lint --ignore-extra coffee-script
 ```
 
+## Static configuration
+
+All options above can also be saved in a `.requirelintrc` file at the root of your project. For example:
+
+```
+require=coffee-script/register
+ignore-missing=newrelic
+```
+
+This makes it easier to check-in your configuration to source-control, although you could equally save your options in `package.json`, for example:
+
+```json
+{
+  "scripts": {
+    "lint": "require-lint --require=coffee-script/register"
+  }
+}
+```
+
+Note that the `.requirelintrc` file can be located at any path supported by the [rc](https://www.npmjs.com/package/rc) package, such as `~/.requirelintrc` or `/etc/requirelintrc`.
+
 ## Dev notes
 
 ```
