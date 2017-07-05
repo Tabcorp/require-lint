@@ -7,7 +7,7 @@ var index    = require('../lib/index');
 
 function list(arg) {
   if (util.isArray(arg)) return arg;
-  else if (typeof arg === 'string') return [arg];
+  else if (typeof arg === 'string') return arg.split(',');
   else return [];
 }
 
