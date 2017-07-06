@@ -92,6 +92,12 @@ Modules that should not be considered extraneous, even if they are not `required
 $ require-lint --ignore-extra coffee-script
 ```
 
+If you would like to use `--ignore-extra` with multiple dependencies, you can separate them using commas:
+
+```bash
+$ require-lint --ignore-extra coffee-script,bootstrap,ejs
+```
+
 ## Static configuration
 
 All options above can also be saved in a `.requirelintrc` file at the root of your project. For example:
