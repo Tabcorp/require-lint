@@ -107,17 +107,6 @@ describe('require lint', function() {
       });
     });
 
-    it('can ignore specified extraneous dependencies', function(done) {
-      test([
-        '--pkg ' + __dirname + '/extra/package.json',
-        '--ignore-extra express'
-      ], function(exitCode, stdout, stderr) {
-        exitCode.should.eql(0);
-        stderr.should.not.containEql('express');
-        done();
-      });
-    });
-
   });
 
   describe('extra requires', function() {
@@ -177,6 +166,54 @@ describe('require lint', function() {
       });
     });
 
+  });
+
+  describe('ignoring extraneous dependencies', function() {
+
+    it('can ignore specified extraneous dependencies', function(done) {
+      test([
+        '--pkg ' + __dirname + '/extra/package.json',
+        '--ignore-extra express'
+      ], function(exitCode, stdout, stderr) {
+        exitCode.should.eql(1);
+        stderr.should.not.containEql('express');
+        stderr.should.containEql('bootstrap');
+        done();
+      });
+    });
+
+    it('ignores comma separated extraneous packages', function(done) {
+      test([
+        '--pkg ' + __dirname + '/extra/package.json',
+        '--ignore-extra express,bootstrap'
+      ], function(exitCode, stdout, stderr) {
+        exitCode.should.eql(0);
+        stderr.should.not.containEql('express');
+        stderr.should.not.containEql('bootstrap');
+        done();
+      });
+    });
+
+    it('ignores extraneous packages repeating the same flag', function(done) {
+      test([
+        '--pkg ' + __dirname + '/extra/package.json',
+        '--ignore-extra express --ignore-extra bootstrap'
+      ], function(exitCode, stdout, stderr) {
+        exitCode.should.eql(0);
+        stderr.should.not.containEql('express');
+        stderr.should.not.containEql('bootstrap');
+        done();
+      });
+    });
+
+    it('ignores extraneous packages reading from rc file', function(done) {
+      test(__dirname + '/extra-config', [], function(exitCode, stdout, stderr) {
+        exitCode.should.eql(0);
+        stderr.should.not.containEql('express');
+        stderr.should.not.containEql('bootstrap');
+        done();
+      });
+    });
   });
 
   describe('config file', function() {
