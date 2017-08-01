@@ -1,5 +1,10 @@
 language: node_js
 node_js:
-  - "0.10.42"
-  - "4.3.1"
-  - "5.6.0"
+  - "4"
+  - "6"
+deploy:
+  provider: npm
+  email: npm@tabdigital.com.au
+  api_key: $NPM_TOKEN
+  on:
+    tags: true
