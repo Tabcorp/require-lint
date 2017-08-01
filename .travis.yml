@@ -2,9 +2,13 @@ language: node_js
 node_js:
   - "4"
   - "6"
-deploy:
-  provider: npm
-  email: npm@tabdigital.com.au
-  api_key: $NPM_TOKEN
-  on:
-    tags: true
+jobs:
+  include:
+    - stage: npm release
+      script: echo "Deploying to npm ..."
+      deploy:
+        provider: npm
+        email: npm@tabdigital.com.au
+        api_key: $NPM_TOKEN
+        on:
+          tags: true
