@@ -6,7 +6,7 @@
 
 [![Build Status](http://img.shields.io/travis/TabDigital/require-lint.svg?style=flat)](http://travis-ci.org/TabDigital/require-lint)
 [![Dependencies](http://img.shields.io/david/TabDigital/require-lint.svg?style=flat)](https://david-dm.org/TabDigital/require-lint)
-[![Dev dependencies](http://img.shields.io/david/dev/TabDigital/require-lint.svg?style=flat)](https://david-dm.org/TabDigital/require-lint)
+[![Dev dependencies](http://img.shields.io/david/dev/TabDigital/require-lint.svg?style=flat)](https://david-dm.org/TabDigital/require-lint) [![Greenkeeper badge](https://badges.greenkeeper.io/Tabcorp/require-lint.svg)](https://greenkeeper.io/)
 
 Parses your code for `require` statements, and checks that:
 
