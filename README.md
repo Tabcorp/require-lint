@@ -2,11 +2,11 @@
 
 
 [![NPM](http://img.shields.io/npm/v/require-lint.svg?style=flat)](https://npmjs.org/package/require-lint)
-[![License](http://img.shields.io/npm/l/require-lint.svg?style=flat)](https://github.com/TabDigital/require-lint)
+[![License](http://img.shields.io/npm/l/require-lint.svg?style=flat)](https://github.com/Tabcorp/require-lint)
 
-[![Build Status](http://img.shields.io/travis/TabDigital/require-lint.svg?style=flat)](http://travis-ci.org/TabDigital/require-lint)
-[![Dependencies](http://img.shields.io/david/TabDigital/require-lint.svg?style=flat)](https://david-dm.org/TabDigital/require-lint)
-[![Dev dependencies](http://img.shields.io/david/dev/TabDigital/require-lint.svg?style=flat)](https://david-dm.org/TabDigital/require-lint) [![Greenkeeper badge](https://badges.greenkeeper.io/Tabcorp/require-lint.svg)](https://greenkeeper.io/)
+[![Build Status](http://img.shields.io/travis/Tabcorp/require-lint.svg?style=flat)](http://travis-ci.org/Tabcorp/require-lint)
+[![Dependencies](http://img.shields.io/david/Tabcorp/require-lint.svg?style=flat)](https://david-dm.org/Tabcorp/require-lint)
+[![Dev dependencies](http://img.shields.io/david/dev/Tabcorp/require-lint.svg?style=flat)](https://david-dm.org/Tabcorp/require-lint) [![Greenkeeper badge](https://badges.greenkeeper.io/Tabcorp/require-lint.svg)](https://greenkeeper.io/)
 
 Parses your code for `require` statements, and checks that:
 
