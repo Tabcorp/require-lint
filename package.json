@@ -1,6 +1,6 @@
 {
   "name": "require-lint",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Verify that require statements match your package.json",
   "author": "Tabcorp",
   "license": "MIT",
