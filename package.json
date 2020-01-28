@@ -13,10 +13,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/TabDigital/require-lint.git"
+    "url": "https://github.com/Tabcorp/require-lint.git"
   },
   "bugs": {
-    "url": "https://github.com/TabDigital/require-lint/issues"
+    "url": "https://github.com/Tabcorp/require-lint/issues"
   },
   "main": "lib/index.js",
   "bin": {
