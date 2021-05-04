@@ -129,3 +129,5 @@ $ npm test
 ## Other projects
 
 *Note: inspired by [dependency-check](https://github.com/maxogden/dependency-check). This implementation relies on `Module._compile` to add support Coffee-Script.*
+
+test
