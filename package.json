@@ -28,7 +28,7 @@
   "dependencies": {
     "builtins": "^4.0.0",
     "detective": "^5.1.0",
-    "glob": "^7.0.0",
+    "glob": "^9.1.2",
     "lodash": "^4.5.1",
     "rc": "^1.2.1"
   },
